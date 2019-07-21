@@ -60,8 +60,8 @@ T BitStream<Source>::next(int nbits, std::false_type) {
     // To avoid right-shifting data beyond the width of the given type (which is
     // undefined behavior, because of course it is) only perform this shift-
     // assignment if we have room.
-    if (static_cast<SourceType>(n) < numBits<SourceType>()) {
-      m_bits >>= static_cast<SourceType>(n);
+    if (n < numBits<SourceType>()) {
+      m_bits >>= n;
     }
     m_numBits -= n;
     wantBits -= n;
